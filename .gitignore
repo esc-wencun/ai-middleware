@@ -8,9 +8,6 @@ redis/data/
 postgres/data/
 elasticsearch/data/
 
-# ============ 敏感配置：含密码 ============
-.env
-
 # ============ Docker compose 运行产物 ============
 **/docker-compose.override.yml
 compose.override.yml
