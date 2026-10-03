@@ -1,0 +1,22 @@
+# ============ 数据目录：数据库二进制文件，绝不入库 ============
+*/data/
+milvus/etcd_data/
+milvus/minio_data/
+qdrant/storage/
+qdrant/data/
+redis/data/
+postgres/data/
+elasticsearch/data/
+
+# ============ 敏感配置：含密码 ============
+.env
+
+# ============ Docker compose 运行产物 ============
+**/docker-compose.override.yml
+compose.override.yml
+**/compose.y*ml.backup
+
+# ============ 系统与编辑器杂物 ============
+Thumbs.db
+desktop.ini
+.DS_Store

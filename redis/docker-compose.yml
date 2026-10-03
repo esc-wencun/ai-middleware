@@ -1,0 +1,33 @@
+name: middle-redis
+
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: middle-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_ARGS: >-
+        --requirepass ${REDIS_PASSWORD}
+        --maxmemory ${REDIS_MAXMEMORY}
+        --maxmemory-policy ${REDIS_EVICTION}
+        --appendonly yes
+        --appendfsync everysec
+        --save 900 1
+        --save 300 10
+        --save 60 10000
+        --dir /data
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD}\" --no-auth-warning ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 768M
