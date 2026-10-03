@@ -1,0 +1,5 @@
+# 强制 shell 脚本永远使用 LF 换行 (bash 遇到 CRLF 会报错)
+*.sh text eol=lf
+
+# bat 必须保持 CRLF (Windows cmd 要求)
+*.bat text eol=crlf
