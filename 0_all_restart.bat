@@ -16,6 +16,8 @@ echo ===== [elasticsearch] 重启 =====
 cd elasticsearch && docker compose restart && cd ..
 echo ===== [mysql] 重启 =====
 cd mysql && docker compose restart && cd ..
+echo ===== [tdengine] 重启 =====
+cd tdengine && docker compose restart && cd ..
 
 echo.
 echo ===== 全部重启完成 =====

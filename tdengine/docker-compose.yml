@@ -1,0 +1,25 @@
+name: middle-tdengine
+
+services:
+  tdengine:
+    image: tdengine/tdengine:3.3.6.13
+    container_name: middle-tdengine
+    restart: unless-stopped
+    ports:
+      - "6030:6030"       # 原生协议
+      - "6041:6041"       # REST/WebSocket（JDBC TAOS-WS 用）
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data:/var/lib/taos
+      - ./log:/var/log/taos
+    healthcheck:
+      test: ["CMD", "taos", "-s", "SELECT SERVER_VERSION()"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 1G

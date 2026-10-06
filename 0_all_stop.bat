@@ -16,6 +16,8 @@ echo ===== [elasticsearch] 停止 =====
 cd elasticsearch && docker compose stop && cd ..
 echo ===== [mysql] 停止 =====
 cd mysql && docker compose stop && cd ..
+echo ===== [tdengine] 停止 =====
+cd tdengine && docker compose stop && cd ..
 
 echo.
 echo ===== 全部停止完成, 数据已保留 =====

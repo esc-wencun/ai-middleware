@@ -21,7 +21,7 @@ Windows 之外平台的启停脚本。compose 文件与数据目录完全通用�
 ./service.sh elasticsearch logs -f   # 跟踪 ES 日志 (Ctrl+C 退出)
 ```
 
-服务名：`redis` `postgres` `milvus` `qdrant` `elasticsearch` `mysql` `all`
+服务名：`redis` `postgres` `milvus` `qdrant` `elasticsearch` `mysql` `tdengine` `all`
 
 ## 首次使用
 

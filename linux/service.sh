@@ -5,7 +5,7 @@
 #   ./service.sh redis start          启动 redis
 #   ./service.sh all stop             停止全部
 #   ./service.sh milvus logs -f       跟踪 milvus 日志
-# 服务名: redis postgres milvus qdrant elasticsearch mysql all
+# 服务名: redis postgres milvus qdrant elasticsearch mysql tdengine all
 # 动作:   start stop restart status logs
 # ============================================================
 set -e
@@ -13,7 +13,7 @@ cd "$(dirname "$0")/.."
 
 usage() {
     echo "用法: $0 <服务名> <动作> [logs附加参数]"
-    echo "  服务名: redis postgres milvus qdrant elasticsearch mysql all"
+    echo "  服务名: redis postgres milvus qdrant elasticsearch mysql tdengine all"
     echo "  动作:   start stop restart status logs"
     echo "示例:   $0 redis start"
     echo "        $0 all stop"
@@ -40,7 +40,7 @@ run_one() {
 }
 
 if [ "$NAME" = "all" ]; then
-    for d in redis postgres milvus qdrant elasticsearch mysql; do
+    for d in redis postgres milvus qdrant elasticsearch mysql tdengine; do
         run_one "$d"
     done
     echo "===== 全部完成 ====="

@@ -1,6 +1,6 @@
 # AI 中间件集（W:\wencun\ai\middle）
 
-本机 Docker 部署的 6 套 AI 常用中间件，每套独立目录 + 独立 compose，根目录有对应编号的启停脚本（双击即用）。
+本机 Docker 部署的 7 套 AI 常用中间件，每套独立目录 + 独立 compose，根目录有对应编号的启停脚本（双击即用）。
 
 ## 服务一览
 
@@ -11,7 +11,8 @@
 | 3 | Milvus standalone | 19530（SDK）、9091（HTTP） | 无 | Attu `http://localhost:8082` |
 | 4 | Qdrant | 6333（HTTP+WebUI）、6334（gRPC） | 无 | 自带 `http://localhost:6333/dashboard` |
 | 5 | Elasticsearch 8.18 | 9200 | 无（本机模式） | — |
-| 6 | MySQL 8.0 | 3306 | `root`/`111111`，预建库 `ruoyi-vue-pro` | — |
+| 6 | MySQL 8.0 | 3306 | `root`/`111111`，预建库 `ruoyi-vue-pro`、`aiflowy` | — |
+| 7 | TDengine 3.3 | 6041（WS）、6030 | `root`/`taosdata` | — |
 
 ## 向量能力
 
@@ -27,7 +28,7 @@
 或命令行：
 
 ```bash
-cd redis && docker compose up -d      # 其余同理: postgres / milvus / qdrant / elasticsearch / mysql
+cd redis && docker compose up -d      # 其余同理: postgres / milvus / qdrant / elasticsearch / mysql / tdengine
 ```
 
 ## 备份
