@@ -7,6 +7,7 @@ qdrant/data/
 redis/data/
 postgres/data/
 elasticsearch/data/
+mysql/data/
 
 # ============ Docker compose 运行产物 ============
 **/docker-compose.override.yml

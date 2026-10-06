@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================
-REM  0_all_start.bat - 启动全部中间件 (Redis/Postgres/Milvus/Qdrant/ES)
+REM  0_all_start.bat - 启动全部中间件 (Redis/Postgres/Milvus/Qdrant/ES/MySQL)
 REM ============================================================
 cd /d "%~dp0"
 
@@ -14,6 +14,8 @@ echo ===== [qdrant] 启动 =====
 cd qdrant && docker compose up -d && cd ..
 echo ===== [elasticsearch] 启动 =====
 cd elasticsearch && docker compose up -d && cd ..
+echo ===== [mysql] 启动 =====
+cd mysql && docker compose up -d && cd ..
 
 echo.
 echo ===== 全部启动完成 =====

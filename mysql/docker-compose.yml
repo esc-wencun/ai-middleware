@@ -1,0 +1,31 @@
+name: middle-mysql
+
+services:
+  mysql:
+    image: mysql:8.0.46
+    container_name: middle-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    # 用 env_file 直接注入容器环境，而不是 ${VAR} 插值：
+    # 插值会被 shell 里已有的 MYSQL_* 环境变量覆盖（compose 优先取 shell）
+    env_file: .env
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-time-zone=+08:00
+      --lower-case-table-names=1
+      --max_connections=500
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - ./data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
