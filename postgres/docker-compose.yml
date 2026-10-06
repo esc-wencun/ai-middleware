@@ -2,7 +2,7 @@ name: middle-postgres
 
 services:
   postgres:
-    image: pgvector/pgvector:pg17
+    image: pgvector/pgvector:0.8.7-pg17
     container_name: middle-postgres
     restart: unless-stopped
     ports:
@@ -32,7 +32,7 @@ services:
           memory: 2G
 
   adminer:
-    image: adminer:latest
+    image: adminer:6.1.1
     container_name: middle-adminer
     restart: unless-stopped
     ports:

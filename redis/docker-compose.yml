@@ -2,7 +2,7 @@ name: middle-redis
 
 services:
   redis:
-    image: redis/redis-stack-server:latest
+    image: redis/redis-stack-server:7.4.0-v8
     container_name: middle-redis
     restart: unless-stopped
     ports:
