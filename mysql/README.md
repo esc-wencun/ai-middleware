@@ -9,7 +9,7 @@
 | 端口 | `3306` |
 | 用户 / 密码 | `root` / `111111`，另建 `wencun` / `111111`（均任意 IP 可登录，`init/00-users.sql`） |
 | 认证插件 | `mysql_native_password`（兼容老客户端；如 Navicat 低版本、部分 JDBC 驱动） |
-| 预建库 | `ruoyi-vue-pro`（见 `.env` 的 `MYSQL_DATABASE`，可空格分隔多个） |
+| 预建库 | `ruoyi-vue-pro`、`aiflowy`（`init/01、03` 初始化芋道库，`init/04、05` 初始化 aiflowy 库；`.env` 的 `MYSQL_DATABASE` 仅预建 `ruoyi-vue-pro`） |
 | 连接串 | `jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro` |
 | 字符集 | utf8mb4 / utf8mb4_unicode_ci，时区 +08:00 |
 | 数据目录 | `./data` |
