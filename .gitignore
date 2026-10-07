@@ -11,6 +11,10 @@ mysql/data/
 tdengine/data/
 tdengine/log/
 
+# ============ MySQL 种子数据：来自官方发行版、体积大，不入库（本地保留） ============
+mysql/init/*.sql
+!mysql/init/00-users.sql
+
 # ============ Docker compose 运行产物 ============
 **/docker-compose.override.yml
 compose.override.yml
