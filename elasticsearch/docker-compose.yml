@@ -14,6 +14,11 @@ services:
       bootstrap.memory_lock: "true"
       cluster.name: middle-es
       ingest.geoip.downloader.enabled: "false"
+      # CORS：允许浏览器端工具（Elasticvue, localhost:8080）跨源访问 ES API
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "http://localhost:8080"
+      http.cors.allow-headers: "X-Requested-With,Content-Type,Content-Length,Authorization"
+      http.cors.allow-methods: "OPTIONS,HEAD,GET,POST,PUT,DELETE"
     ulimits:
       memlock:
         soft: -1
@@ -32,3 +37,20 @@ services:
       resources:
         limits:
           memory: 2G
+
+  elasticvue:
+    image: cars10/elasticvue:1.16.0
+    container_name: middle-elasticvue
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    environment:
+      # 预配置默认集群。注意：这是浏览器端应用，从用户浏览器直连 ES，
+      # 所以 uri 必须是浏览器可达地址（localhost），不能写 compose 服务名
+      ELASTICVUE_CLUSTERS: '[{"name":"middle-es","uri":"http://localhost:9200"}]'
+    deploy:
+      resources:
+        limits:
+          memory: 256M

@@ -1,15 +1,16 @@
-# Elasticsearch 8.18.3（middle-elasticsearch）
+# Elasticsearch 8.18.3（middle-elasticsearch）+ Elasticvue（middle-elasticvue）
 
-全文检索 + 分析引擎，8.x 原生支持 `dense_vector` 字段与 kNN 向量检索（approximate + exact），可与全文混合打分（RRF）。
+全文检索 + 分析引擎，8.x 原生支持 `dense_vector` 字段与 kNN 向量检索（approximate + exact），可与全文混合打分（RRF）。配套 Elasticvue 作为 Web 管理界面。
 
 ## 基本信息
 
 | 项 | 值 |
 |---|---|
 | HTTP API | `http://localhost:9200`（本机开发模式，未开认证） |
+| Web 管理界面 | `http://localhost:8080`（Elasticvue 1.16.0，默认集群已预配置为 middle-es） |
 | 数据目录 | `./data` |
 | JVM 堆 | 1GB（容器上限 2GB） |
-| 容器 | `middle-elasticsearch` |
+| 容器 | `middle-elasticsearch`、`middle-elasticvue` |
 
 ## IK 中文分词插件
 
@@ -26,6 +27,12 @@
 重装/升级方法（如需换 ES 版本重装 IK）：临时删掉 compose 里的两个挂载行，`docker compose up -d` 后执行
 `docker compose exec elasticsearch elasticsearch-plugin install --batch https://get.infini.cloud/elasticsearch/analysis-ik/<版本号>`，
 重启，再 `docker cp` 把 `plugins/analysis-ik` 与 `config/analysis-ik` 拷回仓库目录（新版本词典以容器内为准）。
+
+## Elasticvue（Web 管理界面）
+
+- 镜像 `cars10/elasticvue:1.16.0`（固定精确 tag，勿用 latest），端口 8080，内存上限 256M。
+- 通过环境变量 `ELASTICVUE_CLUSTERS` 预配置默认集群，容器启动时写入 `/usr/share/nginx/html/api/default_clusters.json`，格式 `[{"name":"middle-es","uri":"http://localhost:9200"}]`。
+- **它是纯浏览器端应用**：页面从浏览器直连 ES，所以 uri 必须写浏览器可达的 `localhost:9200`（写 compose 服务名浏览器解析不了），因此 ES 侧开了 CORS（compose 里 `http.cors.*`，仅放行 `http://localhost:8080` 这一个来源）。
 
 ## 常用命令
 
