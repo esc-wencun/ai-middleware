@@ -20,6 +20,8 @@ services:
         hard: -1
     volumes:
       - ./data:/usr/share/elasticsearch/data
+      - ./plugins:/usr/share/elasticsearch/plugins
+      - ./ik-config:/usr/share/elasticsearch/config/analysis-ik
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -qE '\"status\":\"(green|yellow)\"'"]
       interval: 15s

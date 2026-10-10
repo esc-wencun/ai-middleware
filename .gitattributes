@@ -3,3 +3,7 @@
 
 # bat 必须保持 CRLF (Windows cmd 要求)
 *.bat text eol=crlf
+
+# ES IK 插件与词典(发行版文件):保持原始字节,禁止行尾转换
+elasticsearch/plugins/** binary
+elasticsearch/ik-config/** binary
